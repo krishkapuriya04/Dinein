@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chef Orders</title>
+  <script src="https://kit.fontawesome.com/01da381823.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="chef.css"> <!-- Add your CSS file if needed -->
+</head>
+<!-- Header Section -->
+<header id="header">
+    <div class="container">
+        <nav class="main-nav">
+            <div class="logo-container">
+                <img src="images/menulogo.png" class="logo" alt="Menu Logo">
+                <h1>Chef-Board</h1>
+            </div>
+            <ul class="icons">
+               
+                <li><i class="fa-solid fa-bell" title="Notifications"></i></li>
+               <a href="cart.html"> <li><i class="fa-solid fa-cart-shopping" title="Cart"></i></li></a>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<br><br>
+
+  <h1>Order Details</h1><br><br>
+  <div class="order-container">
+    <ul id="order-items"></ul>
+  </div>
+
+  <script>
+    // Function to display order details
+    function displayOrderDetails() {
+      // Get the order details from local storage
+      let orderDetails = JSON.parse(localStorage.getItem('orderDetails')) || [];
+      let orderItemsContainer = document.getElementById('order-items');
+
+      // Clear the order items container
+      orderItemsContainer.innerHTML = '';
+
+      // Check if there are no order details
+      if (orderDetails.length === 0) {
+        orderItemsContainer.innerHTML = '<p>No orders found.</p>';
+        return;
+      }
+
+      // Create and display order items
+      orderDetails.forEach((item) => {
+        let orderItem = document.createElement('li');
+        orderItem.classList.add('order-item');
+        orderItem.innerHTML = `
+          <span class="item-name">${item.name || 'Unnamed Item'}</span>
+          <span class="item-price">₹${item.price || '0.00'}</span>
+          <span class="item-quantity">Quantity: ${item.quantity || 1}</span>
+        `;
+        orderItemsContainer.appendChild(orderItem);
+      });
+    }
+
+    // Call the function to display order details on page load
+    displayOrderDetails();
+  </script>
+</body>
+</html>
