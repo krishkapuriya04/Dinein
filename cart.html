@@ -101,7 +101,7 @@
   // Get the cart items from local storage
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Save the cart items to localStorage with a key that can be accessed in chef.html
+  // Save the cart items to localStorage with a key that can be accessed in payment.html
   localStorage.setItem('orderDetails', JSON.stringify(cart));
 
   // Show order placed message
@@ -123,6 +123,11 @@
   setTimeout(() => {
     messageDiv.remove();
   }, 3000);
+
+  // Redirect to payment.html after the message
+  setTimeout(() => {
+    window.location.href = "payment.html";  // Redirect to the payment page
+  }, 3000); // Wait for 3 seconds before redirecting
 }
 
     // Call the function to display cart items
@@ -132,7 +137,7 @@
 
     <!-- Footer Section -->
     <footer>
-      <p>&copy; 2024 Dine-in. All rights reserved.</p>
+      <p>&copy; 2025 Dine-in. All rights reserved.</p>
   </footer>
 
 </html>
