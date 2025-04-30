@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment</title>
+  <link rel="stylesheet" href="payment.css" />
+</head>
+<body>
+  <div class="payment-container">
+    <h2>Select Payment Method</h2>
+
+    <form id="payment-form">
+
+      <div class="payment-options">
+        <!-- Removed card payment option -->
+        <label><input type="radio" name="payment-method" value="upi" checked> UPI</label>
+        <label><input type="radio" name="payment-method" value="counter"> Pay at Counter</label>
+      </div>
+
+      <!-- Removed card-section -->
+      <div id="upi-section" class="payment-section">
+        <label for="upi-id">UPI ID</label>
+        <input type="text" id="upi-id" placeholder="example@upi" />
+      </div>
+
+      <div id="counter-section" class="payment-section hidden">
+        <p>You have chosen to pay at the counter. Please proceed to the cashier after confirming your order.</p>
+      </div>
+
+      <button type="submit">Confirm Payment</button>
+    </form>
+  </div>
+
+  <script>
+    const methodRadios = document.querySelectorAll('input[name="payment-method"]');
+    const upiSection = document.getElementById('upi-section');
+    const counterSection = document.getElementById('counter-section');
+
+    methodRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        upiSection.classList.add('hidden');
+        counterSection.classList.add('hidden');
+
+        if (radio.value === 'upi') upiSection.classList.remove('hidden');
+        if (radio.value === 'counter') counterSection.classList.remove('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
